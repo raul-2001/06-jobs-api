@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const {StatusCodes} = require('http-status-codes')
-const {BadRequesError, UnauthenticatedError} = require('../errors')
+const {BadRequestError, UnauthenticatedError} = require('../errors')
 const bcrypt = require('bcryptjs')
 
 
@@ -15,7 +15,7 @@ const register = async (req, res) => {
 const logon = async (req, res) => {
     const {email, password}  = req.body
     if (!email || !password) {
-        throw new BadRequesError('Please provide email and password!')
+        throw new BadRequestError('Please provide email and password!')
     }
 
     const user = await User.findOne({ email })
