@@ -13,6 +13,10 @@ const getOrder = async (req, res) => {
 
 const createOrder = async (req, res) => {
     req.body.createdBy = req.user.userId
+    
+    const orderCount = await Order.estimatedDocumentCount()
+    req.body.orderNumber = orderCount + 1
+    
     const order = await Order.create(req.body)
     res.status(StatusCodes.CREATED).json({ order })
 }
