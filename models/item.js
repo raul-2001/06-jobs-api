@@ -9,22 +9,22 @@ const ItemShcema = new mongoose.Schema({
     itemName: {
         type: String,
         required: [true, 'Please provide item name'],
-        maxLength: 50,
+        maxlength: 50,
     },
     price: {
         type: Number,
         required: [true, 'Please provide item price'],
-        maxLength: 15,
+        maxlength: 15,
         min: 0
     },
     quantity: {
         type: Number,
         required: [true, 'Plase provide item quantity'],
-        maxLength: 12,
+        maxlength: 12,
     },
     madeIn: {
         type: String,
-        maxLength: 50,
+        maxlength: 50,
     },
     createdBy: {
         type:mongoose.Types.ObjectId,
