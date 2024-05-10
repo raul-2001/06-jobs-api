@@ -29,7 +29,7 @@ const OrderSchema = new mongoose.Schema({
     },
     orderTotal: {
         type: Number,
-        maxLength: 15,
+        maxlength: 15,
     }, 
     OrderStatus: {
         type: String,
