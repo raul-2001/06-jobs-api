@@ -15,6 +15,7 @@ const ItemShcema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please provide item price'],
         maxLength: 15,
+        min: 0
     },
     quantity: {
         type: Number,
