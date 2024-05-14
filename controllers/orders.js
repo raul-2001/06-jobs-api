@@ -18,7 +18,7 @@ const getOrder = async (req, res) => {
     const order = await Order.findOne({
         _id: orderId,
         createdBy: userId,
-    })
+    }).populate('items')
 
     if(!order) {
         throw new NotFoundError(`No order with id ${orderId}`)
@@ -30,6 +30,10 @@ const getOrder = async (req, res) => {
 const createOrder = async (req, res) => {
 
     req.body.createdBy = req.user.userId
+
+    const orderCount = await Order.estimatedDocumentCount()
+    req.body.orderNumber = orderCount + 1
+
     const order = await Order.create(req.body)
     res.status(StatusCodes.CREATED).json({ order })
 }
@@ -44,10 +48,10 @@ const deleteOrder = async (req, res) => {
 }
 
 const updateOrder = async (req, res) => {
-    const {body: {orderStatus, item: {itemPrice}},
+    const {body: {orderStatus},
         user: {userId},
         params: {id: orderId}} = req
-        if (orderStatus === '' || itemPrice === '') {
+        if (orderStatus === '') {
             throw new BadRequestError('Status and item price can not be empty!')
         }
 
