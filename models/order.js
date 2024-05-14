@@ -3,26 +3,7 @@ const allItems = require('./item')
 const { required } = require('joi')
 
 const OrderSchema = new mongoose.Schema({
-    // items: {
-    //     itemNumber: {
-    //         type: String,
-    //         required: [true, 'Please provide item number'],
-    //     },
-    //     itemName: {
-    //         type: String,
-    //         required: [true, 'Please provide name'],
-    //         maxlength: 50,
-    //     },
-    //     itemQuantity: {
-    //         type: Number,
-    //         required: [true, 'Please provide quantity'],
-    //     },
-    //     itemPrice: {
-    //         type: Number,
-    //         required: [true, 'Please provide price'],
-    //         max: 15,
-    //     },
-    // },
+
     items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
     orderNumber: {
         type: Number,
@@ -48,4 +29,3 @@ const OrderSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Order', OrderSchema)
-

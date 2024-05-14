@@ -10,11 +10,14 @@ const ItemShcema = new mongoose.Schema({
     itemName: {
         type: String,
         required: [true, 'Please provide item name'],
+
         maxlength: [50, 'Name can not be more than 50 characters'],
+
     },
     price: {
         type: Number,
         required: [true, 'Please provide item price'],
+
         min: 1,
         max: [15, 'Price can not be more than 15 characters '],
         
@@ -22,8 +25,10 @@ const ItemShcema = new mongoose.Schema({
     quantity: {
         type: Number,
         required: [true, 'Plase provide item quantity'],
+
         min: 1,
         max: [12, 'Quantity can not be more than 12 characters'],
+
     },
     madeIn: {
         type: String,
