@@ -1,37 +1,20 @@
-const { required } = require('joi')
 const mongoose = require('mongoose')
+const allItems = require('./item')
+const { required } = require('joi')
 
 const OrderSchema = new mongoose.Schema({
-    // item: {
-    //     itemNumber: {
-    //         type: String,
-    //         required: [true, 'Please provide item number'],
-    //     },
-    //     itemName: {
-    //         type: String,
-    //         required: [true, 'Please provide name'],
-    //         maxLength: 50,
-    //     },
-    //     itemQuantity: {
-    //         type: Number,
-    //         required: [true, 'Please provide quantity'],
-    //     },
-    //     itemPrice: {
-    //         type: Number,
-    //         required: [true, 'Please provide price'],
-    //         maxLength: 15,
-    //     },
+
     items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
-    },
     orderNumber: {
-        type: String,
-        required: [true, 'Please provide order number']
+        type: Number,
+        required: true,
+        default: 0,
     },
     orderTotal: {
         type: Number,
-        maxlength: 15,
+        max: 15,
     }, 
-    OrderStatus: {
+    orderStatus: {
         type: String,
         enum: ['inProcess', 'declined', 'completed'],
         default: 'inProcess',

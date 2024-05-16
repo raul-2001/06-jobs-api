@@ -1,21 +1,23 @@
 const User = require('../models/User')
 const {StatusCodes} = require('http-status-codes')
-const {BadRequesError, UnauthenticatedError} = require('../errors')
+const {BadRequestError, UnauthenticatedError} = require('../errors')
 const bcrypt = require('bcryptjs')
 
 
-const register = async (req, res) => {  
+const register = async (req, res) => {
     const user = await User.create({...req.body})
     const token = user.createJWT()
     res
         .status(StatusCodes.CREATED)
-        .json({user: {name: user.name}, token})
+        .json({user: {name: user.name}, token, msg: 'User created'})
 }
 
 const logon = async (req, res) => {
+    console.log(req.body)
     const {email, password}  = req.body
     if (!email || !password) {
-        throw new BadRequesError('Please provide email and password!')
+        console.log(email, password)
+        throw new BadRequestError('Please provide email and password!')
     }
 
     const user = await User.findOne({ email })
@@ -30,7 +32,7 @@ const logon = async (req, res) => {
 
     const token = user.createJWT()
 
-    res.status(StatusCodes.OK).json({user: {name: user.name}, token})
+    res.status(StatusCodes.OK).json({user: {name: user.name}, token, msg: `Success: ${user.name} signed in`})
 }
 
 
