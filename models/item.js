@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const ItemShcema = new mongoose.Schema({
     itemNumber: {
         type: Number,
-        required: [true, "Please provide item number"],
         trim: true
     },
     itemName: {

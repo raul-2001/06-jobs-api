@@ -1,56 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css" type="text/css">
-    <title>Home</title>
-</head>
-<body>
-    <header>
-        <div class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jobs List</title>
+  </head>
 
-            <img src="#" alt="logo" class="logo">
-
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#orders">Orders</a></li>
-                    <li><a href="#">CRM</a></li>
-                    <li><a href="#">contacts</a></li>
-                    <li><a href="./register.html" placeholder="sign up">Sign up</a></li>
-                    <li><a href="./logon.html">Sign in</a></li>
-                </ul>
-            </nav>
+  <body>
+    <h1>Jobs List</h1>
+    <hr />
+    <p id="message"></p>
+    <hr />
+    <div id="logon-register" style="display:none;">
+      <button type="button" id="logon">logon</button>
+      <button type="button" id="register">register</button>
+    </div>
+    <div id="logon-div" style="display:none;">
+      <form>
+        <div>
+          <label for="email">email:</label>
+          <input type="email" id="email" />
         </div>
-    </header>
-    <!-- <main>
-        <section id="signin">
-            <form class="form contact-form">
-                <div class="form-row">
-                    <label for="username" class="form-label">username</label>
-                    <input type="text" class="form-input username-input">
-                </div>
-                <div class="form-row">
-                    <label for="password" class="form-label">password</label>
-                    <input type="password" class="form-input password-input">
-                </div>
-                <div>
-                    <div class="text-small form-alert">there was an error</div>
-                    <button type="submit" class="btn btn-block">submit</button>
-                </div>
-            </form>
-        </section>
-        <section id="order">
-
-        </section>
-    </main> -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    ></script>
-    <script src="./main.js"></script>
-</body>
+        <div>
+          <label for="password">password:</label>
+          <input type="password" id="password" />
+        </div>
+        <button type="button" id="logon-button">logon</button>
+        <button type="button" id="logon-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="register-div" style="display:none;">
+      <form>
+        <div>
+          <label for="name">name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="email1">email:</label>
+          <input type="email" id="email1" />
+        </div>
+        <div>
+          <label for="password1">password:</label>
+          <input type="password" id="password1" />
+        </div>
+        <div>
+          <label for="password2">verify password:</label>
+          <input type="password" id="password2" />
+        </div>
+        <button type="button" id="register-button">register</button>
+        <button type="button" id="register-cancel">cancel</button>
+      </form>
+    </div>
+    <div id="jobs" style="display:none;">
+      <p id="jobs-message"></p>
+      <table id="jobs-table">
+        <tr id="jobs-table-header">
+          <th>ItemName</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Made in</th>
+          <th colspan="2"></th>
+        </tr>
+      </table>
+      <button type="button" id="add-job">add job</button>
+      <button type="button" id="logoff">log off</button>
+    </div>
+    <div id="edit-job" style="display:none;">
+      <form>
+        <div>
+          <label for="company">Item name:</label>
+          <input type="text" id="company" />
+        </div>
+        <div>
+          <label for="position">Price:</label>
+          <input type="text" id="position" />
+        </div>
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="text" id="quantity" />
+        </div>
+        <div>
+            <label for="madeIn">Made in:</label>
+            <input type="text" id="madeIn" />
+        </div>
+        <button type="button" id="adding-job">add</button>
+        <button type="button" id="edit-cancel">cancel</button>
+      </form>
+    </div>
+    <script src="./index.js" type="module"></script>
+  </body>
 </html>

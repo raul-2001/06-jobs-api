@@ -1,121 +1,227 @@
 openapi: 3.0.0
+
 info:
-  title: Store-Order-API
+
+  title: ORDER-API
+
   contact: {}
+
   version: '1.0'
+
 servers:
-- url: https://order-api-a70z.onrender.com/api/v1
+
+- url: https://zero6-jobs-api-giraffe-3.onrender.com/api/v1
+
   variables: {}
+
 paths:
+
   /auth/register:
+
     post:
+
       tags:
+
       - Auth
+
       summary: Register User
+
       operationId: RegisterUser
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
+
               - $ref: '#/components/schemas/RegisterUserRequest'
+
               - example:
-                  name: admin1
-                  email: admin1@gmail.com
+
+                  name: admin2
+
+                  email: admin2@gmail.com
+
                   password: secret
+
             example:
-              name: admin1
-              email: admin1@gmail.com
+
+              name: admin2
+
+              email: admin2@gmail.com
+
               password: secret
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security: []
+
   /auth/logon:
+
     post:
+
       tags:
+
       - Auth
+
       summary: Login User
+
       operationId: LoginUser
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
+
               - $ref: '#/components/schemas/LoginUserRequest'
+
               - example:
+
                   email: admin@gmail.com
+
                   password: secret
+
             example:
+
               email: admin@gmail.com
+
               password: secret
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security: []
+
   /orders:
+
     get:
+
       tags:
+
       - Orders
+
       summary: Get All Orders
+
       operationId: GetAllOrders
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
     post:
+
       tags:
+
       - Orders
+
       summary: Create Order
+
       operationId: CreateOrder
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
+
               - $ref: '#/components/schemas/CreateOrderRequest'
+
               - example:
-                  item:
-                    itemNumber: 1
-                    itemName: pen
-                    itemPrice: 15
-                    itemQuantity: 1
+
+                  items:
+
+                  - 663a673365d9325ea02ef817
+
+                  - 663a5d182ed7e9239c5036aa
+
                   orderTotal: 15
+
                   status: inProcess
-                  orderNumber: 1
+
             example:
-              item:
-                itemNumber: 1
-                itemName: pen
-                itemPrice: 15
-                itemQuantity: 1
+
+              items:
+
+              - 663a673365d9325ea02ef817
+
+              - 663a5d182ed7e9239c5036aa
+
               orderTotal: 15
+
               status: inProcess
-              orderNumber: 1
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
   /orders/{id}:
     parameters:
       - in: path
@@ -123,135 +229,234 @@ paths:
         schema:
           type: string
         required: true
-        description: The order ID
+        description: the order id
+
     get:
+
       tags:
+
       - Orders
+
       summary: Get single order
+
       operationId: Getsingleorder
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
-  /orders/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The order ID
+
     patch:
+
       tags:
+
       - Orders
+
       summary: Update order
+
       operationId: Updateorder
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
+
               - $ref: '#/components/schemas/UpdateorderRequest'
+
               - example:
+
                   item:
+
                     itemNumber: 1
+
                     itemName: pen
+
                     itemPrice: 20
+
                     itemQuantity: 1
+
                   orderTotal: 15
+
                   orderStatus: completed
+
                   orderNumber: 1
+
             example:
+
               item:
+
                 itemNumber: 1
+
                 itemName: pen
+
                 itemPrice: 20
+
                 itemQuantity: 1
+
               orderTotal: 15
+
               orderStatus: completed
+
               orderNumber: 1
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
-  /orders/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The order ID    
+
+  
+
     delete:
+
       tags:
+
       - Orders
+
       summary: Delete order
+
       operationId: Deleteorder
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
   /items:
+
     post:
+
       tags:
+
       - Items
-      summary: Create Items
-      operationId: CreateItems
+
+      summary: Create Item
+
+      operationId: CreateItem
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
-              - $ref: '#/components/schemas/CreateItemsRequest'
+
+              - $ref: '#/components/schemas/CreateItemRequest'
+
               - example:
-                  itemName: playstation
-                  price: 450
+
+                  itemName: playstation6
+
+                  price: '-1'
+
                   quantity: 10
+
                   madeIn: USA
+
                   itemNumber: 1
+
             example:
-              itemName: playstation
-              price: 450
+
+              itemName: playstation6
+
+              price: '-1'
+
               quantity: 10
+
               madeIn: USA
+
               itemNumber: 1
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
     get:
+
       tags:
+
       - Items
+
       summary: Get All Items
+
       operationId: GetAllItems
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
   /items/{id}:
     parameters:
       - in: path
@@ -259,249 +464,452 @@ paths:
         schema:
           type: string
         required: true
-        description: The item ID
+        description: the item id
+
     get:
+
       tags:
+
       - Items
+
       summary: Get single item
+
       operationId: Getsingleitem
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
-  /items/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The item ID
+
+  
+
     patch:
+
       tags:
+
       - Items
+
       summary: Update item
+
       operationId: Updateitem
+
       parameters: []
+
       requestBody:
+
         description: ''
+
         content:
+
           application/json:
+
             schema:
+
               allOf:
+
               - $ref: '#/components/schemas/UpdateitemRequest'
+
               - example:
+
                   price: 1
+
                   quantity: 100
+
             example:
+
               price: 1
+
               quantity: 100
+
         required: true
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
-  /items/{id}:
-    parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-        description: The item ID
+
+  
+
     delete:
+
       tags:
+
       - Items
+
       summary: Delete item
+
       operationId: Deleteitem
+
       parameters: []
+
       responses:
+
         '200':
+
           description: ''
+
           headers: {}
+
       deprecated: false
+
       security:
+
       - bearer: []
+
 components:
+
   schemas:
+
     RegisterUserRequest:
+
       title: RegisterUserRequest
+
       required:
+
       - name
+
       - email
+
       - password
+
       type: object
+
       properties:
+
         name:
+
           type: string
+
         email:
+
           type: string
+
         password:
+
           type: string
+
       example:
-        name: admin1
-        email: admin1@gmail.com
+
+        name: admin2
+
+        email: admin2@gmail.com
+
         password: secret
+
     LoginUserRequest:
+
       title: LoginUserRequest
+
       required:
+
       - email
+
       - password
+
       type: object
+
       properties:
+
         email:
+
           type: string
+
         password:
+
           type: string
+
       example:
+
         email: admin@gmail.com
+
         password: secret
+
     CreateOrderRequest:
+
       title: CreateOrderRequest
+
       required:
-      - item
+
+      - items
+
       - orderTotal
+
       - status
-      - orderNumber
+
       type: object
+
       properties:
-        item:
-          allOf:
-          - $ref: '#/components/schemas/Item'
-          - {}
+
+        items:
+
+          type: array
+
+          items:
+
+            type: string
+
+          description: ''
+
         orderTotal:
+
           type: integer
+
           format: int32
+
         status:
+
           type: string
-        orderNumber:
-          type: integer
-          format: int32
+
       example:
-        item:
-          itemNumber: 1
-          itemName: pen
-          itemPrice: 15
-          itemQuantity: 1
+
+        items:
+
+        - 663a673365d9325ea02ef817
+
+        - 663a5d182ed7e9239c5036aa
+
         orderTotal: 15
+
         status: inProcess
-        orderNumber: 1
-    Item:
-      title: Item
+
+    CreateItemRequest:
+
+      title: CreateItemRequest
+
       required:
-      - itemNumber
+
       - itemName
-      - itemPrice
-      - itemQuantity
-      type: object
-      properties:
-        itemNumber:
-          type: integer
-          format: int32
-        itemName:
-          type: string
-        itemPrice:
-          type: integer
-          format: int32
-        itemQuantity:
-          type: integer
-          format: int32
-      example:
-        itemNumber: 1
-        itemName: pen
-        itemPrice: 15
-        itemQuantity: 1
-    CreateItemsRequest:
-      title: CreateItemsRequest
-      required:
-      - itemName
+
       - price
+
       - quantity
+
       - madeIn
+
       - itemNumber
+
       type: object
+
       properties:
+
         itemName:
+
           type: string
+
         price:
-          type: integer
-          format: int32
+
+          type: string
+
         quantity:
+
           type: integer
+
           format: int32
+
         madeIn:
+
           type: string
+
         itemNumber:
+
           type: integer
+
           format: int32
+
       example:
-        itemName: playstation
-        price: 450
+
+        itemName: playstation6
+
+        price: '-1'
+
         quantity: 10
+
         madeIn: USA
+
         itemNumber: 1
+
     UpdateorderRequest:
+
       title: UpdateorderRequest
+
       required:
+
       - item
+
       - orderTotal
+
       - orderStatus
+
       - orderNumber
+
       type: object
+
       properties:
+
         item:
+
           allOf:
+
           - $ref: '#/components/schemas/Item'
+
           - {}
+
         orderTotal:
+
           type: integer
+
           format: int32
+
         orderStatus:
+
           type: string
+
         orderNumber:
+
           type: integer
+
           format: int32
+
       example:
+
         item:
+
           itemNumber: 1
+
           itemName: pen
+
           itemPrice: 20
+
           itemQuantity: 1
+
         orderTotal: 15
+
         orderStatus: completed
+
         orderNumber: 1
-    UpdateitemRequest:
-      title: UpdateitemRequest
+
+    Item:
+
+      title: Item
+
       required:
-      - price
-      - quantity
+
+      - itemNumber
+
+      - itemName
+
+      - itemPrice
+
+      - itemQuantity
+
       type: object
+
       properties:
-        price:
+
+        itemNumber:
+
           type: integer
+
           format: int32
-        quantity:
+
+        itemName:
+
+          type: string
+
+        itemPrice:
+
           type: integer
+
           format: int32
+
+        itemQuantity:
+
+          type: integer
+
+          format: int32
+
       example:
+
+        itemNumber: 1
+
+        itemName: pen
+
+        itemPrice: 20
+
+        itemQuantity: 1
+
+    UpdateitemRequest:
+
+      title: UpdateitemRequest
+
+      required:
+
+      - price
+
+      - quantity
+
+      type: object
+
+      properties:
+
+        price:
+
+          type: integer
+
+          format: int32
+
+        quantity:
+
+          type: integer
+
+          format: int32
+
+      example:
+
         price: 1
+
         quantity: 100
+
   securitySchemes:
+
     bearer:
+
       type: http
+
       scheme: bearer
+
 security: []
+
 tags:
+
 - name: Auth
+
   description: ''
+
 - name: Orders
+
   description: ''
+
 - name: Items
+
   description: ''
