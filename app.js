@@ -36,15 +36,17 @@ app.use(rateLimiter({
   limit: 100,
 }));
 
-app.use(express.static('../order-client'))
+app.use(express.static('./public'))
 app.use(express.json());
 app.use(helmet())
 app.use(cors())
 app.use(xss())
 
-app.get('/', (req, res) => {
-  res.send('<h1>jobs API</h1><a href="/api-docs">Documentation<a/>')
-})
+
+// app.get('/', (req, res) => {
+//   res.send('<h1>Orders API</h1><a href="/api-docs">Documentation</a>')
+// })
+
 
 app.use('api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
