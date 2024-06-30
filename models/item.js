@@ -15,14 +15,14 @@ const ItemShcema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please provide item price'],
         min: 1,
-        max: [15, 'Price can not be more than 15 characters '],
+        maxlength: [15, 'Price can not be more than 15 characters '],
         
     },
     quantity: {
         type: Number,
         required: [true, 'Plase provide item quantity'],
         min: 1,
-        max: [12, 'Quantity can not be more than 12 characters'],
+        maxlength: [12, 'Quantity can not be more than 12 characters'],
     },
     madeIn: {
         type: String,

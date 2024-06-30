@@ -1,6 +1,7 @@
 const { BadRequestError, NotFoundError } = require('../errors')
 const Order = require('../models/order')
 const {StatusCodes} = require('http-status-codes')
+const Item = require('../models/item')
 
 const getAllOrders = async (req, res) => {
     const orders = await Order.find({createdBy: req.user.userId}).sort('-createdAt')
@@ -47,13 +48,18 @@ const deleteOrder = async (req, res) => {
     res.status(StatusCodes.OK).send('order deleted')
 }
 
+
+
 const updateOrder = async (req, res) => {
+
+    
     const {body: {orderStatus},
         user: {userId},
         params: {id: orderId}} = req
         if (orderStatus === '') {
             throw new BadRequestError('Status and item price can not be empty!')
         }
+        
 
         const order = await Order.findByIdAndUpdate({_id: orderId, createdBy: userId}, req.body, {
             new: true, runValidators: true
