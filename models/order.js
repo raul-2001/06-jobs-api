@@ -12,7 +12,7 @@ const OrderSchema = new mongoose.Schema({
     },
     orderTotal: {
         type: Number,
-        max: 15,
+        maxlength: [15, 'Quantity can not be more than 12 characters']
     }, 
     orderStatus: {
         type: String,
