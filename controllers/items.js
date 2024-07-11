@@ -21,7 +21,7 @@ const createItem = async (req, res) => {
     req.body.createdBy = req.user.userId
 
     const itemCount = await Item.estimatedDocumentCount()
-    req.body.itemCount = itemCount + 1
+    req.body.itemNumber = itemCount + 1
 
     const item = await Item.create(req.body)
     res.status(StatusCodes.CREATED).json({ item })
